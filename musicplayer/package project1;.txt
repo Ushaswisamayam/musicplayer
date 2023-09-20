@@ -1,0 +1,170 @@
+package project1;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+//import javax.swing.Icon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
+public class MusicPlayer extends JPanel implements 
+ActionListener {
+JFrame window=new JFrame(" Simple interface");
+JLabel info= new JLabel(" Simple Music Player");
+JButton addButton=new JButton("Add Music"); 
+JButton playButton=new JButton("Play");
+JButton stopButton=new JButton("Stop");
+//Icon icon = new ImageIcon("D:\\desktop\pic.PNG");
+//JButton addButton = new JButton(icon);
+Font customFont=new Font("",Font.BOLD,20);
+JComboBox list=new JComboBox();
+JFileChooser browser=new JFileChooser();//used to 
+select a file
+FileNameExtensionFilter filter= new 
+FileNameExtensionFilter("WAV Sound", "wav");//Java inbuilt 
+libraries support only AIFC, AIFF, AU, SND and WAVE formats.
+int returnValue;
+String[] musics=new String[10];
+int index=0;
+File selectedFile;
+File sound;
+AudioInputStream ais;//input stream with a specified 
+audio format and length
+Clip clip;
+long currentFrame;
+MusicPlayer()
+{
+this.setBackground(Color.black);
+window.add(this);
+addButton.addActionListener(this);
+playButton.addActionListener(this);
+stopButton.addActionListener(this);
+info.setFont(new Font("",Font.ITALIC,20));
+window.add(info,BorderLayout.PAGE_END);
+addButton.setFont(customFont);
+addButton.setBackground(Color.black);
+addButton.setForeground(Color.yellow);
+window.add(addButton,BorderLayout.LINE_START);
+playButton.setFont(customFont);
+playButton.setBackground(Color.black);
+playButton.setForeground(Color.green);
+window.add(playButton,BorderLayout.CENTER);
+stopButton.setFont(customFont);
+stopButton.setBackground(Color.black);
+stopButton.setForeground(Color.red);
+window.add(stopButton,BorderLayout.LINE_END);
+list.setBackground(Color.black);
+list.setBackground(Color.gray);
+window.add(list,BorderLayout.PAGE_START);
+browser.setFileFilter(filter);
+window.setSize(400,200);
+window.setLocation(200,100);
+window.setDefaultCloseOperation(JFrame.EXIT_ON_CLO
+SE);
+window.setVisible(true);
+}
+@Override
+public void actionPerformed(ActionEvent ae) {
+// TODO Auto-generated method stub
+if(ae.getSource()==addButton)
+{
+returnValue=browser.showOpenDialog(window);
+if(returnValue==browser.APPROVE_OPTION)
+{
+selectedFile=browser.getSelectedFile();
+musics[index]=selectedFile.toString();
+list.addItem("song-"+index);
+index++;
+}
+}
+else if(ae.getSource()==playButton)
+{
+try {
+if(list.getSelectedIndex()==0)
+{
+sound =new 
+File(musics[list.getSelectedIndex()]);
+ais=AudioSystem.getAudioInputStream(sound);
+clip=AudioSystem.getClip();
+clip.open(ais);
+clip.start();
+}
+else 
+if(list.getSelectedIndex()==1)
+{
+sound =new 
+File(musics[list.getSelectedIndex()]);
+ais=AudioSystem.getAudioInputStream(sound);
+clip=AudioSystem.getClip();
+clip.open(ais);
+clip.start();
+}
+else 
+if(list.getSelectedIndex()==2)
+{
+sound =new 
+File(musics[list.getSelectedIndex()]);
+ais=AudioSystem.getAudioInputStream(sound);
+clip=AudioSystem.getClip();
+clip.open(ais);
+clip.start();
+}
+else 
+if(list.getSelectedIndex()==3)
+{
+sound =new 
+File(musics[list.getSelectedIndex()]);
+ais=AudioSystem.getAudioInputStream(sound);
+clip=AudioSystem.getClip();
+clip.open(ais);
+clip.start();
+}
+else 
+if(list.getSelectedIndex()==4)
+{
+sound =new 
+File(musics[list.getSelectedIndex()]);
+ais=AudioSystem.getAudioInputStream(sound);
+clip=AudioSystem.getClip();
+clip.open(ais);
+clip.start();
+}
+else 
+if(list.getSelectedIndex()==5)
+{
+sound =new 
+File(musics[list.getSelectedIndex()]);
+ais=AudioSystem.getAudioInputStream(sound);
+clip=AudioSystem.getClip();
+clip.open(ais);
+clip.start();
+}
+}
+catch(Exception e) 
+{
+JOptionPane.showMessageDialog(null,e);
+}
+}
+else if(ae.getSource()==stopButton)
+{
+clip.stop();
+}
+}
+}
+public class MainOfPlayer {
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+ MusicPlayer mp=new MusicPlayer();
+ 
+}
+}
